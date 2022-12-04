@@ -1,18 +1,19 @@
 import PropTypes from 'prop-types';
+import { Button } from './FeedbackOptions.styled';
 
 export const FeedbackOptions = ({ options, incrementStatisticsData }) => {
   return (
     <div>
       {options.map(option => {
         return (
-          <button
+          <Button
             key={option}
             name={option}
             type="button"
             onClick={incrementStatisticsData}
           >
             {option}
-          </button>
+          </Button>
         );
       })}
     </div>

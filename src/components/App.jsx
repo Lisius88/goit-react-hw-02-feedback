@@ -2,7 +2,8 @@ import { Component } from 'react';
 import { Section } from './Section/Section';
 import { Statistics } from './Statistics/Statistics';
 import { FeedbackOptions } from './FeedbackOptions/FeedbackOptions';
-import { Notiffication } from './Notification/Notification';
+import { Notification } from './Notification/Notification';
+import { MainContent } from './App.styled';
 
 export class App extends Component {
   state = {
@@ -33,19 +34,18 @@ export class App extends Component {
 
   render() {
     const buttonOptions = Object.keys(this.state);
+    const total = this.state.bad + this.state.neutral + this.state.good;
     return (
-      <div>
+      <MainContent>
         <Section title={'Please leave feedback'}>
           <FeedbackOptions
             options={buttonOptions}
             incrementStatisticsData={this.handleButtonClick}
           />
         </Section>
-        {this.state.good === 0 &&
-        this.state.bad === 0 &&
-        this.state.neutral === 0 ? (
+        {total === 0 ? (
           <Section title={'Statisctics'}>
-            <Notiffication message={'There is no feedback'} />
+            <Notification message={'There is no feedback'} />
           </Section>
         ) : (
           <Section title={'Statisctics'}>
@@ -58,7 +58,7 @@ export class App extends Component {
             />
           </Section>
         )}
-      </div>
+      </MainContent>
     );
   }
 }
